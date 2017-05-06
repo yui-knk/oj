@@ -270,14 +270,13 @@ hat_cstr(ParseInfo pi, Val parent, Val kval, const char *str, size_t len) {
 
 static int
 hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
-    printf("*** object.c hat_num\n");
     if (2 == kval->klen) {
 	switch (kval->key[1]) {
 	case 't': // time as a float
 	    {
 		int64_t	nsec = ni->num * 1000000000LL / ni->div;
 
-		printf("*** object.c hat_num time as float\n");
+		printf("*** object.c hat_num time as float time: %ld nsec: %lld exp: %ld\n", (long)ni->i, (long long)nsec, (long)ni->exp);
 		if (ni->neg) {
 		    ni->i = -ni->i;
 		    if (0 < nsec) {
@@ -310,7 +309,6 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    printf("*** object.c hat_num time new %s finished\n", rb_obj_classname(parent->val));
 		    //parent->val = rb_funcall2(rb_cTime, oj_new_id, 7, args);
 		} else {
-		    printf("*** object.c hat_num time nano_new\n");
 		    parent->val = rb_time_nano_new(ni->i, (long)nsec);
 		}
 	    }
