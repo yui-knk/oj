@@ -308,6 +308,8 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    
 		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 		    //parent->val = rb_time_new(t, nsec / 1000);
+		    foo = rb_funcall(rb_cTime, rb_intern("to_s"), 0, 0);
+		    printf("*** after to_s\n");
 		    foo = rb_funcall(rb_cTime, rb_intern("new"), 3,
 				     LONG2NUM((long)(1900 + st->tm_year)),
 				     LONG2NUM((long)(1 + st->tm_mon)),
