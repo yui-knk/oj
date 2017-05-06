@@ -7,8 +7,8 @@ image: Visual Studio 2015
 cache:
   - vendor/bundle
 
-platform:
-  - x86
+#platform:
+#  - x86
 
 # environment:
 #   matrix:
@@ -16,7 +16,6 @@ platform:
 #     - RUBY_VERSION: 193
 
 environment:
-  APPVEYOR_RDP_PASSWORD: fixm3-wtf
   PATH: c:\Ruby%RUBY_VERSION%\DevKit\mingw\bin;C:\Ruby%RUBY_VERSION%\bin;C:\Ruby%RUBY_VERSION%\DevKit\bin;C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1;%PATH%
   matrix:
     #- RUBY_VERSION: 23
