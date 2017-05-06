@@ -292,6 +292,7 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    parent->val = rb_funcall2(parent->val, oj_utc_id, 0, 0);
 		} else if (ni->hasExp) {
 		    time_t	t = (time_t)(ni->i + ni->exp);
+		    /*
 		    struct tm	*st = gmtime(&t);
 		    VALUE	args[8];
 
@@ -302,14 +303,14 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    args[4] = LONG2NUM(st->tm_min);
 		    args[5] = rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0);
 		    args[6] = LONG2NUM(ni->exp);
-
+		    */
 		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 		    parent->val = rb_time_new(t, nsec / 1000);
 
 		    printf("*** object.c hat_num time new %s finished\n", rb_obj_classname(parent->val));
 		    //parent->val = rb_funcall2(rb_cTime, oj_new_id, 7, args);
 		} else {
-		    printf("*** object.c hat_num time new nano %s  %p\n", rb_class2name(rb_cTime), parent);
+		    printf("*** object.c hat_num time new nano %p\n", parent);
 		    parent->val = rb_time_nano_new(ni->i, (long)nsec);
 		    printf("*** object.c hat_num time new nano %s finished\n", rb_obj_classname(parent->val));
 		}
