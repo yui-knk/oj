@@ -37,7 +37,7 @@ build_script:
   - ruby extconf.rb
   - make
   - cd C:\projects\oj\test
-  - tests.rb
+  - ruby tests.rb
   #- bundle config --local path vendor/bundle
   #- bundle install
   #- bundle exec rake
