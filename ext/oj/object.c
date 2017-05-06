@@ -304,20 +304,19 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    args[5] = rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0);
 		    args[6] = LONG2NUM(ni->exp);
 		    */
-		    VALUE	tc = rb_const_get_at(rb_cObject, rb_intern("Time"));
 		    volatile VALUE	foo;
 		    
-		    printf("*** object.c hat_num time new %s  %p   %lx %lx\n", rb_class2name(rb_cTime), parent, tc, rb_cTime);
+		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 		    //parent->val = rb_time_new(t, nsec / 1000);
-		    foo = rb_funcall(tc, rb_intern("new"), 3,
-					     LONG2NUM(1900 + st->tm_year),
-					     LONG2NUM(1 + st->tm_mon),
-					     LONG2NUM(st->tm_mday),
-					     LONG2NUM(st->tm_hour),
-					     LONG2NUM(st->tm_min),
-					     LONG2NUM(0),
-					     //rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0),
-					     LONG2NUM(ni->exp));
+		    foo = rb_funcall(rb_cTime, rb_intern("new"), 3,
+				     LONG2NUM((long)(1900 + st->tm_year)),
+				     LONG2NUM((long)(1 + st->tm_mon)),
+				     LONG2NUM((long)(st->tm_mday)));
+		    //LONG2NUM(st->tm_hour),
+		    //LONG2NUM(st->tm_min),
+		    //LONG2NUM(0),
+		    //rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0),
+		    //LONG2NUM(ni->exp));
 
 		    printf("*** object.c hat_num time new %s foo\n", rb_obj_classname(foo));
 		    parent->val = foo;
