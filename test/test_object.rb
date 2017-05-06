@@ -577,7 +577,10 @@ class ObjectJuice < Minitest::Test
     # mismatch so instead the seconds, nsecs, and gmt_offset are checked
     # separately along with utc.
     json = Oj.dump(t, :mode => :object, :time_format => :unix_zone)
-    #puts json
+
+    # TBD debug
+    puts json
+    
     loaded = Oj.object_load(json);
     assert_equal(t.tv_sec, loaded.tv_sec)
     if t.respond_to?(:tv_nsec)
