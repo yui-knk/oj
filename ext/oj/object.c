@@ -276,7 +276,6 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 	    {
 		int64_t	nsec = ni->num * 1000000000LL / ni->div;
 
-		printf("*** object.c hat_num time as float time: %ld nsec: %ld exp: %ld\n", (long)ni->i, (long)nsec, (long)ni->exp);
 		if (ni->neg) {
 		    ni->i = -ni->i;
 		    if (0 < nsec) {
@@ -293,7 +292,6 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		} else if (ni->hasExp) {
 		    time_t	t = (time_t)(ni->i + ni->exp);
 		    struct tm	*st = gmtime(&t);
-#if 1
 		    VALUE	args[8];
 
 		    args[0] = LONG2NUM(1900 + st->tm_year);
@@ -304,22 +302,7 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    args[5] = rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0);
 		    args[6] = LONG2NUM(ni->exp);
 		    
-		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
-
 		    parent->val = rb_funcall2(rb_cTime, oj_new_id, 7, args);
-#else
-		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
-		    parent->val = rb_funcall(rb_cTime, oj_new_id, 7,
-					     LONG2NUM(1900 + st->tm_year),
-					     LONG2NUM(1 + st->tm_mon),
-					     LONG2NUM(st->tm_mday),
-					     LONG2NUM(st->tm_hour),
-					     LONG2NUM(st->tm_min),
-					     rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0),
-					     LONG2NUM(ni->exp));
-#endif
-		    printf("*** object.c hat_num time new %s finished\n", rb_obj_classname(parent->val));
-
 		} else {
 		    parent->val = rb_time_nano_new(ni->i, (long)nsec);
 		}

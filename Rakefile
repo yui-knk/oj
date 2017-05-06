@@ -20,8 +20,7 @@ task :test_all => [:clean, :compile] do
   exitcode = 0
   status = 0
 
-  #cmds = "ruby test/tests.rb && ruby test/tests_mimic.rb && ruby test/tests_mimic_addition.rb"
-  cmds = "ruby test/tests.rb"
+  cmds = "ruby test/tests.rb && ruby test/tests_mimic.rb && ruby test/tests_mimic_addition.rb"
   puts "\n" + "#"*90
   puts cmds
   Bundler.with_clean_env do
