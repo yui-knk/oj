@@ -19,10 +19,10 @@ environment:
   APPVEYOR_RDP_PASSWORD: fixm3-wtf
   PATH: c:\Ruby%RUBY_VERSION%\DevKit\mingw\bin;C:\Ruby%RUBY_VERSION%\bin;C:\Ruby%RUBY_VERSION%\DevKit\bin;C:\mingw-w64\x86_64-6.3.0-posix-seh-rt_v5-rev1;%PATH%
   matrix:
-    - RUBY_VERSION: 23
+    #- RUBY_VERSION: 23
     - RUBY_VERSION: 23-x64
-    - RUBY_VERSION: 22
-    - RUBY_VERSION: 21
+    #- RUBY_VERSION: 22
+    #- RUBY_VERSION: 21
 
 build: off
 
@@ -41,9 +41,9 @@ build_script:
 
 matrix:
   allow_failures:
-    - RUBY_VERSION: 23
+    #- RUBY_VERSION: 23
     - RUBY_VERSION: 23-x64
-    - RUBY_VERSION: 22
-    - RUBY_VERSION: 21
+    #- RUBY_VERSION: 22
+    #- RUBY_VERSION: 21
   fast_finish: true
 

@@ -297,18 +297,16 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    VALUE	args[8];
 
 		    args[0] = LONG2NUM(1900 + st->tm_year);
-		    /*
 		    args[1] = LONG2NUM(1 + st->tm_mon);
 		    args[2] = LONG2NUM(st->tm_mday);
 		    args[3] = LONG2NUM(st->tm_hour);
 		    args[4] = LONG2NUM(st->tm_min);
 		    args[5] = rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0);
 		    args[6] = LONG2NUM(ni->exp);
-		    */
 		    
 		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 
-		    parent->val = rb_funcall2(rb_cTime, oj_new_id, 1, args);
+		    parent->val = rb_funcall2(rb_cTime, oj_new_id, 7, args);
 #else
 		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 		    parent->val = rb_funcall(rb_cTime, oj_new_id, 7,
