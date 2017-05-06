@@ -305,7 +305,8 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    
 		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 
-		    parent->val = rb_funcall2(rb_cTime, oj_new_id, 1, args);
+		    //parent->val = rb_funcall2(rb_cTime, oj_new_id, 1, args);
+		    parent->val = rb_funcall2(rb_cTime, rb_intern("local"), 1, args);
 
 		    printf("*** object.c hat_num time new %s finished\n", rb_obj_classname(parent->val));
 
