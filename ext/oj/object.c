@@ -304,9 +304,11 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    args[5] = rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0);
 		    args[6] = LONG2NUM(ni->exp);
 		    */
+		    VALUE	tc = rb_const_get_at(rb_cObject, rb_intern("Time"));
+
 		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 		    //parent->val = rb_time_new(t, nsec / 1000);
-		    parent->val = rb_funcall(rb_cTime, oj_new_id, 7,
+		    parent->val = rb_funcall(tc, rb_intern("new"), 7,
 					     LONG2NUM(1900 + st->tm_year),
 					     LONG2NUM(1 + st->tm_mon),
 					     LONG2NUM(st->tm_mday),

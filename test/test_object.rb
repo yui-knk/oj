@@ -222,6 +222,7 @@ class ObjectJuice < Minitest::Test
     Oj.default_options = @default_options
   end
 
+=begin
   def test_nil
     dump_and_load(nil, false)
   end
@@ -566,7 +567,7 @@ class ObjectJuice < Minitest::Test
     assert_equal(t.utc?, loaded.utc?)
     assert_equal(t.utc_offset, loaded.utc_offset)
   end
-
+=end
   def test_time_early
     if RUBY_VERSION.start_with?('1.8')
       t = Time.parse('1954-01-05T21:37:07.123456789-08:00')
@@ -591,7 +592,7 @@ class ObjectJuice < Minitest::Test
     assert_equal(t.utc?, loaded.utc?)
     assert_equal(t.utc_offset, loaded.utc_offset)
   end
-
+=begin
   def test_time_unix_zone
     if RUBY_VERSION.start_with?('1.8')
       t = Time.parse('2015-01-05T21:37:07.123456789-08:00')
@@ -997,7 +998,7 @@ class ObjectJuice < Minitest::Test
     h['b'] = 2
     dump_and_load(h, false)
   end
-
+=end
   def dump_and_load(obj, trace=false)
     json = Oj.dump(obj, :indent => 2, :mode => :object)
     puts json if trace
