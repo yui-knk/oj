@@ -35,6 +35,7 @@ build_script:
   - echo %PATH%
   - cd C:\projects\oj\ext\oj
   - ruby extconf.rb
+  - make
   - cd C:\projects\oj\test
   - test_object.rb
   #- bundle config --local path vendor/bundle
