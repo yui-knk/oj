@@ -303,7 +303,7 @@ hat_num(ParseInfo pi, Val parent, Val kval, NumInfo ni) {
 		    args[5] = rb_float_new((double)st->tm_sec + ((double)nsec + 0.5) / 1000000000.0);
 		    args[6] = LONG2NUM(ni->exp);
 
-		    printf("*** object.c hat_num time new %s\n", rb_class2name(rb_cTime));
+		    printf("*** object.c hat_num time new %s  %p\n", rb_class2name(rb_cTime), parent);
 		    parent->val = rb_time_new(t, nsec / 1000);
 
 		    printf("*** object.c hat_num time new %s finished\n", rb_obj_classname(parent->val));
