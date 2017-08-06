@@ -485,11 +485,10 @@ oj_mimic_pretty_generate(int argc, VALUE *argv, VALUE self) {
 static VALUE
 mimic_parse_core(int argc, VALUE *argv, VALUE self, bool bang) {
     struct _ParseInfo	pi;
-    VALUE		args[1];
+    VALUE args[1];
+    VALUE ropts;
 
-    if (argc < 1) {
-	rb_raise(rb_eArgError, "Wrong number of arguments to parse.");
-    }
+    rb_scan_args(argc, argv, "11", (VALUE *)&args, &ropts);
     parse_info_init(&pi);
     oj_set_compat_callbacks(&pi);
     // TBD
@@ -509,7 +508,6 @@ mimic_parse_core(int argc, VALUE *argv, VALUE self, bool bang) {
     pi.max_depth = 100;
 
     if (2 <= argc && Qnil != argv[1]) {
-	VALUE	ropts = argv[1];
 	VALUE	v;
 
 	if (T_HASH != rb_type(ropts)) {
@@ -565,9 +563,8 @@ mimic_parse_core(int argc, VALUE *argv, VALUE self, bool bang) {
 	    rb_raise(rb_eArgError, ":symbolize_names and :create_additions can not both be true.");
 	}
     }
-    *args = *argv;
 
-    if (T_STRING == rb_type(*args)) {
+    if (T_STRING == rb_type(args[0])) {
 	return oj_pi_parse(1, args, &pi, 0, 0, false);
     } else {
 	return oj_pi_sparse(1, args, &pi, 0);
