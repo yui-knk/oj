@@ -4,7 +4,7 @@ $oj_dir = File.dirname(File.dirname(File.expand_path(File.dirname(__FILE__))))
   $: << File.join($oj_dir, dir)
 end
 
-require 'test/unit'
+require 'minitest/autorun'
 REAL_JSON_GEM = !!ENV['REAL_JSON_GEM']
 
 if ENV['REAL_JSON_GEM']
